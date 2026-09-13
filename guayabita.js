@@ -4,7 +4,7 @@ let cuotaInicial;
 let jugadores = [];
 cantJugadores=document.getElementById("cantJugadores").value;
 cuotaInicial=document.getElementById("cuotaInicial").value;
-resultadoJugadorInicial=document.getElementById("resultadoJugadorInicial").value;
+resultadoJugadorInicial=0;
 
 //lanzar dado
 function lanzarDado() {
@@ -12,16 +12,18 @@ function lanzarDado() {
     return dado;
 }
 
-
+//jugadres iniciales
+function jugadoresIniciales(cantJugadores) {
+    for (let i = 0; i < cantJugadores; i++) {
+        jugadores.push({ id: i, resultadoDado: lanzarDado() });
+    }
+    turnoJugador(jugadores);
+}
 
 //turno de cada jugador
-function turnoJugador(cantJugadores) {
+function turnoJugador(jugadores) {
     resultadojugadoresIniciales=[];
     turnoJugadoresFinal=[];
-    for(let i=0;i<=cantJugadores;i++){
-        jugadores.push({id: i, resultadoDado: lanzarDado()});
-    }
-   for(let i=1;i<jugadores.length;i++){
     let jugadorInicial=jugadores[0].id;
     for(let i=1;i<jugadores.length-1;i++){
         if(jugadorInicial.resultadoDado<jugadores[i].resultadoDado){
@@ -33,9 +35,12 @@ function turnoJugador(cantJugadores) {
             resultadoJugadoresIniciales.push(jugadorInicial);
             resultadoJugadoresIniciales.push(jugadores[i].id);
         }
-   }
+    }
    if(resultadoJugadoresIniciales.length>1){
-        turnoJugador(resultadoJugadoresIniciales.length);
-   }
+        turnoJugador(resultadoJugadoresIniciales);
+    }else{
+        document.getElementById("resultadoJugadorInicial").innerHTML = "El jugador inicial es: " + resultadoJugadoresIniciales[0].id;
+        resultadoJugadorInicial=resultadoJugadoresIniciales[0].id;
+    }
 }
-}
+
