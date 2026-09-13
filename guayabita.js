@@ -2,45 +2,74 @@
 let cantJugadores;
 let cuotaInicial;
 let jugadores = [];
-cantJugadores=document.getElementById("cantJugadores").value;
-cuotaInicial=document.getElementById("cuotaInicial").value;
-resultadoJugadorInicial=0;
+
+document.getElementById("btnJugar").addEventListener("click", function (){
+    cantJugadores=document.getElementById("cantJugadores").value;
+    cuotaInicial=document.getElementById("cuotaInicial").value;
+
+    let turnoJugadoresFinales=jugadoresFinales(cantJugadores);
+
+})
 
 //lanzar dado
 function lanzarDado() {
-    let dado = Math.floor(Math.random() * 6) + 1;
-    return dado;
+    return Math.floor(Math.random() * 6) + 1;
 }
 
 //jugadres iniciales
-function jugadoresIniciales(cantJugadores) {
+function jugadoresFinales(cantJugadores) {
     for (let i = 0; i < cantJugadores; i++) {
         jugadores.push({ id: i, resultadoDado: lanzarDado() });
     }
-    turnoJugador(jugadores);
+    return calcularOrdenDeTiro(jugadores);
 }
 
 //turno de cada jugador
 function turnoJugador(jugadores) {
-    resultadojugadoresIniciales=[];
-    turnoJugadoresFinal=[];
-    let jugadorInicial=jugadores[0].id;
-    for(let i=1;i<jugadores.length-1;i++){
+    let resultadoJugadoresIniciales = [];
+    let jugadorInicial=jugadores[0];
+    for(let i=1;i<jugadores.length;i++){
         if(jugadorInicial.resultadoDado<jugadores[i].resultadoDado){
-            jugadorInicial=jugadores[i].id; 
-            resultadoJugadoresIniciales.clear();
+            jugadorInicial=jugadores[i];
+            resultadoJugadoresIniciales.length=0;
             resultadoJugadoresIniciales.push(jugadorInicial); 
-            turnoJugadoresFinal.unshift(jugadores[i].id);
-        }else if(jugadorInicial.resultadoDado==jugadores[i].resultadoDado){
-            resultadoJugadoresIniciales.push(jugadorInicial);
-            resultadoJugadoresIniciales.push(jugadores[i].id);
+        }else if(jugadorInicial.resultadoDado===jugadores[i].resultadoDado){
+            if(!resultadoJugadoresIniciales.includes(jugadorInicial)){
+                resultadoJugadoresIniciales.push(jugadorInicial);
+            }
+            resultadoJugadoresIniciales.push(jugadores[i]);
         }
     }
    if(resultadoJugadoresIniciales.length>1){
-        turnoJugador(resultadoJugadoresIniciales);
+       let jugadoresEmpatados=[];
+        for(let i=0;i<resultadoJugadoresIniciales.length;i++){
+            jugadoresEmpatados.push({ id: resultadoJugadoresIniciales[i].id, resultadoDado: lanzarDado() })
+        }return turnoJugador(jugadoresEmpatados);
     }else{
-        document.getElementById("resultadoJugadorInicial").innerHTML = "El jugador inicial es: " + resultadoJugadoresIniciales[0].id;
-        resultadoJugadorInicial=resultadoJugadoresIniciales[0].id;
+        return [jugadorInicial];
     }
+}
+
+function calcularOrdenDeTiro(jugadores) {
+    let ordenado = [...jugadores].sort((a, b) => b.resultadoDado - a.resultadoDado);
+
+    let maxDado = ordenado[0].resultadoDado;
+    let empatadosPrimerLugar = ordenado.filter(j => j.resultadoDado === maxDado);
+
+    if (empatadosPrimerLugar.length > 1) {
+        let ganadorPrimerLugar = turnoJugador(empatadosPrimerLugar);
+        ordenado = ordenado.filter(j => j.id !== ganadorPrimerLugar[0].id);
+        ordenado.unshift(jugadores.find(j => j.id === ganadorPrimerLugar[0].id));
+    }
+
+    document.getElementById("resultadoJugadorInicial").innerHTML =
+        "El jugador inicial es: " + ordenado[0].id;
+
+    return ordenado;
+}
+
+
+function jugar(){
+
 }
 

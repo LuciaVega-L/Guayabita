@@ -1,0 +1,12 @@
+# Archivos de configuración del IDE (JetBrains / WebStorm)
+.idea/
+
+# Dependencias (si en el futuro usas npm/yarn)
+node_modules/
+package-lock.json
+
+# Archivos de sistema operativo y temporales
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
