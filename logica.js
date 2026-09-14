@@ -76,11 +76,10 @@ function calcularOrdenDeTiro(jugadores) {
         ordenado = ordenado.filter(j => j.id !== ganadorPrimerLugar[0].id);
         ordenado.unshift(jugadores.find(j => j.id === ganadorPrimerLugar[0].id));
     }
-    document.getElementById("resultadoJugadorInicial").innerHTML = "El jugador inicial es: " + ordenado[0].id;
+    document.getElementById("resultadoJugadorInicial").innerHTML = "El jugador inicial es: " + (ordenado[0].id + 1) + " con un resultado de: " + ordenado[0].resultadoDado;
     return ordenado;
 }
 
-//deja lista la pantalla para el turno del jugador actual, SIN lanzar el dado todavia (eso lo hace el usuario con el boton)
 function prepararTurno() {
     if (turnoActual >= turnoJugadoresFinales.length) {
         turnoActual = 0;
@@ -100,10 +99,10 @@ function prepararTurno() {
     document.getElementById("btnLanzarDado").style.display = "inline-block";
 
     let jugadorActual = turnoJugadoresFinales[turnoActual];
-    document.getElementById("resultadoDado").innerHTML = "Turno del jugador: " + jugadorActual.id + ". Presiona 'Lanzar dado!' para tirar.";
+    document.getElementById("resultadoDado").innerHTML = "Turno del jugador: " + (jugadorActual.id + 1) + ". Presiona 'Lanzar dado!' para tirar.";
 }
 
-//el jugador actual lanza el dado cuando el usuario presiona el boton
+//el jugador actual lanza el dado cuandopresiona el boton
 document.getElementById("btnLanzarDado").addEventListener("click", jugar);
 
 function jugar() {
@@ -113,15 +112,15 @@ function jugar() {
     jugadorActual.resultadoDado = lanzarDado();
 
     if (jugadorActual.resultadoDado === 1 || jugadorActual.resultadoDado === 6) {
-        document.getElementById("resultadoDado").innerHTML = "El resultado del lanzamiento del dado de: " + jugadorActual.id + " es " + jugadorActual.resultadoDado;
-        document.getElementById("pierdeTurno").innerHTML = "El jugador: " + jugadorActual.id + " perdio el turno! debe poner cuota adicional\nEsta es igual a la cuota inicial!";
+        document.getElementById("resultadoDado").innerHTML = "El resultado del lanzamiento del dado de: " + (jugadorActual.id + 1) + " es " + jugadorActual.resultadoDado;
+        document.getElementById("pierdeTurno").innerHTML = "El jugador: " + (jugadorActual.id + 1) + " perdio el turno! debe poner cuota adicional\nEsta es igual a la cuota inicial!";
         pote += Number(cuotaInicial);
         actualizarPote();
 
         document.getElementById("btnSiguienteTurno").style.display = "inline-block";
     } else {
-        document.getElementById("resultadoDado").innerHTML = "El jugador: " + jugadorActual.id + " Tiene derecho a apostar!\nEl resultado del lanzamiento del dado fue:" + jugadorActual.resultadoDado;
-        document.getElementById("textoDecidirApostar").innerHTML = "Jugador " + jugadorActual.id + " Desea apostar?";
+        document.getElementById("resultadoDado").innerHTML = "El jugador: " + (jugadorActual.id + 1) + " Tiene derecho a apostar!\nEl resultado del lanzamiento del dado fue:" + jugadorActual.resultadoDado;
+        document.getElementById("textoDecidirApostar").innerHTML = "Jugador " + (jugadorActual.id + 1) + " Desea apostar?";
         document.getElementById("zonaDecidirApostar").style.display = "flex";
     }
 }
@@ -196,7 +195,7 @@ function resolverApuesta(jugador) {
         actualizarPote();
         if (apostoTodoActual) {
             document.getElementById("alertaPote").innerHTML =
-                "GUAYABITA! El jugador " + jugador.id + " se comio la guayabita, sacando " + tiroApuesta +
+                "GUAYABITA! El jugador " + (jugador.id + 1) + " se comio la guayabita, sacando " + tiroApuesta +
                 " y limpiando el pote entero ($" + cantApuestaActual + "). Todos deben volver a poner la cuota inicial.";
             esGuayabita = true;
         } else {
