@@ -166,7 +166,7 @@ let apostoTodoActual = false;
 function apostar(jugador) {
     let cantApuesta = Number(document.getElementById("cantidadApostar").value);
     if (cantApuesta > pote || cantApuesta <= 0 || !cantApuesta) {
-        document.getElementById("alertaPote").innerHTML = "La cantidad a apostar puede ser una fraccion o total del pote\nVuelva a ingresar un valor valido";
+        document.getElementById("alertaPote").innerHTML = "La cantidad a apostar puede ser una fraccion o total del pote\nVuelva a ingresar";
         return;
     }
 
