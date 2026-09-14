@@ -17,7 +17,7 @@ document.getElementById("btnJugar").addEventListener("click", function () {
 
     turnoJugadoresFinales = jugadoresFinales(cantJugadores); // ahora SÍ ya está asignado al llegar aquí
 
-    document.getElementById("decidirApostar").style.display = "block";
+    document.getElementById("decidirApostar").style.display = "flex";
     prepararTurno();
 })
 
@@ -120,7 +120,7 @@ function jugar() {
     } else {
         document.getElementById("resultadoDado").innerHTML = "El jugador: " + jugadorActual.id + " Tiene derecho a apostar!\nEl resultado del lanzamiento del dado fue:" + jugadorActual.resultadoDado;
         document.getElementById("textoDecidirApostar").innerHTML = "Jugador " + jugadorActual.id + " Desea apostar?";
-        document.getElementById("zonaDecidirApostar").style.display = "block";
+        document.getElementById("zonaDecidirApostar").style.display = "flex";
     }
 }
 
@@ -143,7 +143,7 @@ document.getElementById("btnDecidirApostar").addEventListener("click", function 
     let desicion = opcionElegida.value;
 
     if (desicion === "si") {
-        document.getElementById("zonaCantidadApostar").style.display = "block";
+        document.getElementById("zonaCantidadApostar").style.display = "flex";
     } else {
         document.getElementById("zonaDecidirApostar").style.display = "none";
         turnoActual++;

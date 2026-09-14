@@ -1,0 +1,197 @@
+/* ---------- Paleta de colores ---------- */
+:root {
+    --blush: #F0C4CB;
+    --antique-rose: #C87D87;
+    --champagne: #FBEAD6;
+    --dried-thyme: #6B7556;
+    --bisque: #E5BCA9;
+    --texto-oscuro: #4A3B36;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Georgia", "Times New Roman", serif;
+    color: var(--texto-oscuro);
+    background: linear-gradient(180deg, var(--champagne) 0%, var(--blush) 100%);
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px 10px;
+}
+
+header h1 {
+    margin: 0;
+    color: var(--dried-thyme);
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ---------- Tarjetas (secciones) ---------- */
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 6px 16px rgba(107, 117, 86, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.subcard {
+    background-color: var(--champagne);
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.subcard-apuesta {
+    background-color: var(--bisque);
+}
+
+.card h2 {
+    margin: 0;
+    color: var(--antique-rose);
+    font-style: italic;
+}
+
+.subcard h3 {
+    margin: 0;
+    color: var(--dried-thyme);
+}
+
+/* ---------- Campos e inputs ---------- */
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-size: 0.9em;
+    color: var(--texto-oscuro);
+}
+
+.input-field {
+    padding: 10px 14px;
+    border: 2px solid var(--blush);
+    border-radius: 12px;
+    font-size: 1em;
+    background-color: var(--champagne);
+    color: var(--texto-oscuro);
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: var(--antique-rose);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+    border: none;
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.btn-primario {
+    background-color: var(--dried-thyme);
+    color: #ffffff;
+}
+
+.btn-secundario {
+    background-color: var(--antique-rose);
+    color: #ffffff;
+}
+
+/* ---------- Radios (SI / NO) ---------- */
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: var(--antique-rose);
+}
+
+/* ---------- Textos de estado ---------- */
+.badge {
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: 12px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(107, 117, 86, 0.12);
+    font-weight: bold;
+    color: var(--dried-thyme);
+    margin: 0;
+}
+
+.badge-pote {
+    background-color: var(--antique-rose);
+    color: #ffffff;
+}
+
+.badge:empty {
+    display: none;
+}
+
+.texto-resultado {
+    margin: 0;
+    color: var(--texto-oscuro);
+}
+
+.texto-alerta {
+    margin: 0;
+    color: var(--antique-rose);
+    font-weight: bold;
+}
+
+.texto-alerta:empty {
+    display: none;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--dried-thyme);
+    font-size: 0.85em;
+}
