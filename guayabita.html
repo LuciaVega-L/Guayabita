@@ -7,26 +7,48 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Guayabita, a Apostar!</h1>
-    </header>
-    <main>
-        <form id="formDatosIniciales">
-            <label for="cantJugadores">Ingrese la cantidad de jugadores:</label>
-            <input type="number" id="cantJugadores" name="cantJugadores" min="2" max="10">
-            <button type="submit">Cargar</button>
-            <label for="cuotaInicial">Ingrese la cuota inicial del pote</label>
-            <input type="number" id="cuotaInicial" name="cuotaInicial" min="1">
-            <button type="submit">Cargar</button>
-            <button type="submit" id="btnJugar" name="btnJugar">JUGAR!</button>
-        </form>
+<header>
+    <h1>Guayabita, a Apostar!</h1>
+</header>
+<main>
+    <form id="formDatosIniciales">
+        <label for="cantJugadores">Ingrese la cantidad de jugadores:</label>
+        <input type="number" id="cantJugadores" name="cantJugadores" min="2" max="10">
 
-        <p id="jugadorInicial"></p>
-        
-        <script src="guayabita.js"></script>
-       
-    </main>
+        <label for="cuotaInicial">Ingrese la cuota inicial del pote</label>
+        <input type="number" id="cuotaInicial" name="cuotaInicial" min="1">
 
-    <footer>
-        <p>Juego Guayabita. Apostar. Todos los derechos reservados.</p>
-    </footer>
+        <button type="button" id="btnJugar" name="btnJugar">JUGAR!</button>
+    </form>
+
+    <p id="resultadoJugadorInicial"></p>
+    <!-- empieza el juego -->
+
+    <section id="decidirApostar" style="display: none;">
+        <h2>A jugar!</h2>
+        <p id="pierdeTurno"></p>
+        <p id="textoDecidirApostar"></p>
+
+        <label for="apostar">SI</label>
+        <input type="radio" id="apostar" name="inputApostar" value="si">
+        <label for="noApostar">NO</label>
+        <input type="radio" id="noApostar" name="inputApostar" value="no">
+        <button type="button" id="btnDecidirApostar">Confirmar</button>
+
+        <div id="zonaCantidadApostar" style="display: none;">
+            <h3>Tu apuesta</h3>
+            <label for="cantidadApostar">¿Cuánto quieres apostar?</label>
+            <input type="number" id="cantidadApostar" min="1">
+            <button type="button" id="btnConfirmarApuesta">Confirmar apuesta</button>
+            <p id="alertaPote"></p>
+        </div>
+    </section>
+
+    <script src="guayabita.js"></script>
+</main>
+
+<footer>
+    <p>Juego Guayabita. Apostar. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>
