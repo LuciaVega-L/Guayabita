@@ -27,22 +27,28 @@
     <section id="decidirApostar" style="display: none;">
         <h2>A jugar!</h2>
         <p id="resultadoDado"></p>
+        <button type="button" id="btnLanzarDado">Lanzar dado!</button>
         <p id="pierdeTurno"></p>
-        <p id="textoDecidirApostar"></p>
 
-        <label for="apostar">SI</label>
-        <input type="radio" id="apostar" name="inputApostar" value="si">
-        <label for="noApostar">NO</label>
-        <input type="radio" id="noApostar" name="inputApostar" value="no">
-        <button type="button" id="btnDecidirApostar">Confirmar</button>
+        <div id="zonaDecidirApostar" style="display: none;">
+            <p id="textoDecidirApostar"></p>
 
-        <div id="zonaCantidadApostar" style="display: none;">
-            <h3>Tu apuesta</h3>
-            <label for="cantidadApostar">¿Cuánto quieres apostar?</label>
-            <input type="number" id="cantidadApostar" min="1">
-            <button type="button" id="btnConfirmarApuesta">Confirmar apuesta</button>
-            <p id="alertaPote"></p>
+            <label for="apostar">SI</label>
+            <input type="radio" id="apostar" name="inputApostar" value="si">
+            <label for="noApostar">NO</label>
+            <input type="radio" id="noApostar" name="inputApostar" value="no">
+            <button type="button" id="btnDecidirApostar">Confirmar</button>
+
+            <div id="zonaCantidadApostar" style="display: none;">
+                <h3>Tu apuesta</h3>
+                <label for="cantidadApostar">¿Cuánto quieres apostar?</label>
+                <input type="number" id="cantidadApostar" min="1">
+                <button type="button" id="btnConfirmarApuesta">Confirmar apuesta</button>
+            </div>
         </div>
+
+        <p id="alertaPote"></p>
+        <button type="button" id="btnSiguienteTurno" style="display: none;">Siguiente turno</button>
     </section>
 
     <script src="guayabita.js"></script>
