@@ -13,12 +13,18 @@ document.getElementById("btnJugar").addEventListener("click", function () {
     jugadores = [];
     turnoActual = 0;
     pote = Number(cuotaInicial) * Number(cantJugadores);
+    actualizarPote();
 
     turnoJugadoresFinales = jugadoresFinales(cantJugadores); // ahora SÍ ya está asignado al llegar aquí
 
     document.getElementById("decidirApostar").style.display = "block";
     prepararTurno();
 })
+
+//muestra el valor actual del pote, se llama cada vez que el pote cambia
+function actualizarPote() {
+    document.getElementById("poteActual").innerHTML = "Pote actual: $" + pote;
+}
 
 //lanzar dado
 function lanzarDado() {
@@ -108,6 +114,7 @@ function jugar() {
         document.getElementById("resultadoDado").innerHTML = "El resultado del lanzamiento del dado de: " + jugadorActual.id + " es " + jugadorActual.resultadoDado;
         document.getElementById("pierdeTurno").innerHTML = "El jugador: " + jugadorActual.id + " perdio el turno! debe poner cuota adicional\nEsta es igual a la cuota inicial!";
         pote += Number(cuotaInicial);
+        actualizarPote();
 
         document.getElementById("btnSiguienteTurno").style.display = "inline-block";
     } else {
@@ -164,6 +171,7 @@ function apostar(jugador) {
 
     if (tiroApuesta > jugador.resultadoDado) {
         pote -= cantApuesta;
+        actualizarPote();
         if (apostoTodo) {
             document.getElementById("alertaPote").innerHTML =
                 "GUAYABITA! El jugador " + jugador.id + " se comio la guayabita, sacando " + tiroApuesta +
@@ -174,6 +182,7 @@ function apostar(jugador) {
         }
     } else {
         pote += cantApuesta;
+        actualizarPote();
         document.getElementById("alertaPote").innerHTML = "Perdiste, sacaste " + tiroApuesta + ", pones $" + cantApuesta + " al pote.";
     }
 
@@ -182,6 +191,7 @@ function apostar(jugador) {
 
 function iniciarNuevaRonda() {
     pote = Number(cuotaInicial) * Number(jugadores.length);
+    actualizarPote();
     turnoActual = 0;
     prepararTurno();
 }
