@@ -75,14 +75,17 @@ function calcularOrdenDeTiro(jugadores) {
 //empear jugar
 function jugar(){
     if(turnoActual >= turnoJugadoresFinales.length){
-        document.getElementById("textoDecidirApostar")
-            ? document.getElementById("textoDecidirApostar").innerHTML = "Ronda terminada."
-            : null;
-        return;
+        turnoActual = 0;
     }
+    document.getElementById("pierdeTurno").innerHTML = "";
+    document.getElementById("alertaPote").innerHTML = "";
+    document.getElementById("zonaCantidadApostar").style.display = "none";
+    document.querySelectorAll('input[name="inputApostar"]').forEach(r => r.checked = false);
 
     let jugadorActual = turnoJugadoresFinales[turnoActual];
     jugadorActual.resultadoDado = lanzarDado();
+
+    document.getElementById("resultadoDado").innerHTML="El resultado del lanzamiento del dado de:"+jugadorActual.id + " es "+jugadorActual.resultadoDado;
 
     if(jugadorActual.resultadoDado===1 || jugadorActual.resultadoDado===6){
         document.getElementById("pierdeTurno").innerHTML = "El jugador: " + jugadorActual.id + " perdio el turno! debe poner cuota adicional\nEsta es igual a la cuota inicial!";
@@ -91,6 +94,7 @@ function jugar(){
         turnoActual++;
         jugar();
     }else{
+        document.getElementById("resultadoDado").innerHTML="El jugador: "+jugadorActual.id+" Tiene derecho a apostar!\nEl resultado del lanzamiento del dado fue:"+jugadorActual.resultadoDado;
         document.getElementById("textoDecidirApostar").innerHTML = "Jugador "+jugadorActual.id + " Desea apostar?";
     }
 }
@@ -130,7 +134,6 @@ function apostar(jugador){
     if(tiroApuesta > jugador.resultadoDado){
         pote -= cantApuesta;
         if(apostoTodo){
-
             document.getElementById("alertaPote").innerHTML =
                 "GUAYABITA! El jugador " + jugador.id + " se comio la guayabita, sacando " + tiroApuesta +
                 " y limpiando el pote entero ($" + cantApuesta + "). Todos deben volver a poner la cuota inicial.";
