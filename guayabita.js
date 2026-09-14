@@ -92,6 +92,8 @@ function prepararTurno() {
     document.getElementById("zonaDecidirApostar").style.display = "none";
     document.getElementById("zonaCantidadApostar").style.display = "none";
     document.getElementById("cantidadApostar").value = "";
+    document.getElementById("camposApuesta").style.display = "block";
+    document.getElementById("btnLanzarDadoApuesta").style.display = "none";
     document.querySelectorAll('input[name="inputApostar"]').forEach(r => r.checked = false);
 
     document.getElementById("btnSiguienteTurno").style.display = "none";
@@ -156,34 +158,54 @@ document.getElementById("btnConfirmarApuesta").addEventListener("click", functio
     apostar(jugadorActual);
 })
 
-//apostar
+//guarda el monto de la apuesta ya confirmada, para usarlo cuando se presione "Lanzar dado!"
+let cantApuestaActual = 0;
+let apostoTodoActual = false;
+
+//confirma el monto a apostar (aun no se tira el dado, eso lo hace el jugador con el boton)
 function apostar(jugador) {
     let cantApuesta = Number(document.getElementById("cantidadApostar").value);
     if (cantApuesta > pote || cantApuesta <= 0 || !cantApuesta) {
-        document.getElementById("alertaPote").innerHTML = "La cantidad a apostar puede ser una fraccion o total del pote, No mayor\nVuelva a ingresar";
+        document.getElementById("alertaPote").innerHTML = "La cantidad a apostar puede ser una fraccion o total del pote\nVuelva a ingresar un valor valido";
         return;
     }
 
-    let apostoTodo = (cantApuesta === pote);
-    let tiroApuesta = lanzarDado();
+    cantApuestaActual = cantApuesta;
+    apostoTodoActual = (cantApuesta === pote);
 
+    document.getElementById("camposApuesta").style.display = "none";
+    document.getElementById("alertaPote").innerHTML = "Apuesta confirmada: $" + cantApuesta + ". Presiona 'Lanzar dado!' para conocer el resultado.";
+    document.getElementById("btnLanzarDadoApuesta").style.display = "inline-block";
+}
+
+//el jugador lanza el dado que decide si gana o pierde la apuesta
+document.getElementById("btnLanzarDadoApuesta").addEventListener("click", function () {
+    let jugadorActual = turnoJugadoresFinales[turnoActual];
+    resolverApuesta(jugadorActual);
+})
+
+//resuelve la apuesta ya confirmada, tirando el dado
+function resolverApuesta(jugador) {
+    document.getElementById("btnLanzarDadoApuesta").style.display = "none";
     document.getElementById("zonaDecidirApostar").style.display = "none";
 
+    let tiroApuesta = lanzarDado();
+
     if (tiroApuesta > jugador.resultadoDado) {
-        pote -= cantApuesta;
+        pote -= cantApuestaActual;
         actualizarPote();
-        if (apostoTodo) {
+        if (apostoTodoActual) {
             document.getElementById("alertaPote").innerHTML =
                 "GUAYABITA! El jugador " + jugador.id + " se comio la guayabita, sacando " + tiroApuesta +
-                " y limpiando el pote entero ($" + cantApuesta + "). Todos deben volver a poner la cuota inicial.";
+                " y limpiando el pote entero ($" + cantApuestaActual + "). Todos deben volver a poner la cuota inicial.";
             esGuayabita = true;
         } else {
-            document.getElementById("alertaPote").innerHTML = "Ganaste! sacaste " + tiroApuesta + ", te llevas $" + cantApuesta + " del pote.";
+            document.getElementById("alertaPote").innerHTML = "Ganaste! sacaste " + tiroApuesta + ", te llevas $" + cantApuestaActual + " del pote.";
         }
     } else {
-        pote += cantApuesta;
+        pote += cantApuestaActual;
         actualizarPote();
-        document.getElementById("alertaPote").innerHTML = "Perdiste, sacaste " + tiroApuesta + ", pones $" + cantApuesta + " al pote.";
+        document.getElementById("alertaPote").innerHTML = "Perdiste, sacaste " + tiroApuesta + ", pones $" + cantApuestaActual + " al pote.";
     }
 
     document.getElementById("btnSiguienteTurno").style.display = "inline-block";

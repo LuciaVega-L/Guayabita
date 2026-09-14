@@ -48,11 +48,14 @@
 
                 <div id="zonaCantidadApostar" class="subcard subcard-apuesta" style="display: none;">
                     <h3>Tu apuesta</h3>
-                    <div class="campo">
-                        <label for="cantidadApostar">¿Cuánto quieres apostar?</label>
-                        <input type="number" id="cantidadApostar" min="1" class="input-field">
+                    <div id="camposApuesta">
+                        <div class="campo">
+                            <label for="cantidadApostar">¿Cuánto quieres apostar?</label>
+                            <input type="number" id="cantidadApostar" min="1" class="input-field">
+                        </div>
+                        <button type="button" id="btnConfirmarApuesta" class="btn btn-secundario">Confirmar apuesta</button>
                     </div>
-                    <button type="button" id="btnConfirmarApuesta" class="btn btn-secundario">Confirmar apuesta</button>
+                    <button type="button" id="btnLanzarDadoApuesta" class="btn btn-primario" style="display: none;">Lanzar dado!</button>
                 </div>
             </div>
 
