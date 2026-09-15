@@ -111,7 +111,7 @@ function jugar() {
 
     if (jugadorActual.resultadoDado === 1 || jugadorActual.resultadoDado === 6) {
         document.getElementById("resultadoDado").innerHTML = "El resultado del lanzamiento del dado de: " + (jugadorActual.id + 1) + " es " + jugadorActual.resultadoDado;
-        document.getElementById("pierdeTurno").innerHTML = "El jugador: " + (jugadorActual.id + 1) + " perdio el turno! debe poner cuota adicional\nEsta es igual a la cuota inicial!";
+        document.getElementById("pierdeTurno").innerHTML = "El jugador: " + (jugadorActual.id + 1) + " perdio el turno! saco:" + jugadorActual.resultadoDado + "debe poner cuota adicional\nEsta es igual a la cuota inicial!";
         pote += Number(cuotaInicial);
         actualizarPote();
 
