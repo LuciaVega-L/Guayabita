@@ -11,65 +11,63 @@
     <h1>Guayabita, a Apostar!</h1>
 </header>
 <main>
-    <div class="container">
+    <section class="contenedor">
 
-        <form id="formDatosIniciales" class="card">
-            <div class="campo">
+        <form id="formDatosIniciales" class="tarjeta">
+            <section class="campo">
                 <label for="cantJugadores">Ingrese la cantidad de jugadores:</label>
-                <input type="number" id="cantJugadores" name="cantJugadores" min="2" max="10" class="input-field">
-            </div>
+                <input type="number" id="cantJugadores" name="cantJugadores" min="2" max="10">
+            </section>
 
-            <div class="campo">
+            <section class="campo">
                 <label for="cuotaInicial">Ingrese la cuota inicial del pote</label>
-                <input type="number" id="cuotaInicial" name="cuotaInicial" min="1" class="input-field">
-            </div>
+                <input type="number" id="cuotaInicial" name="cuotaInicial" min="1">
+            </section>
 
-            <button type="button" id="btnJugar" name="btnJugar" class="btn btn-primario">JUGAR!</button>
+            <button type="button" id="btnJugar" name="btnJugar">JUGAR!</button>
         </form>
 
-        <p id="resultadoJugadorInicial" class="badge"></p>
-        <p id="poteActual" class="badge badge-pote"></p>
-        <!-- empieza el juego -->
+        <p id="resultadoJugadorInicial"></p>
+        <p id="poteActual"></p>
 
-        <section id="decidirApostar" class="card" style="display: none;">
+        <section id="decidirApostar" class="tarjeta" style="display: none;">
             <h2>A jugar!</h2>
-            <p id="resultadoDado" class="texto-resultado"></p>
-            <button type="button" id="btnLanzarDado" class="btn btn-primario">Lanzar dado!</button>
-            <p id="pierdeTurno" class="texto-alerta"></p>
+            <p id="resultadoDado"></p>
+            <button type="button" id="btnLanzarDado">Lanzar dado!</button>
+            <p id="pierdeTurno"></p>
 
-            <div id="zonaDecidirApostar" class="subcard" style="display: none;">
-                <p id="textoDecidirApostar" class="texto-resultado"></p>
+            <section id="zonaDecidirApostar" class="subtarjeta" style="display: none;">
+                <p id="textoDecidirApostar"></p>
 
-                <div class="radio-group">
+                <section class="grupo-radios">
                     <label for="apostar"><input type="radio" id="apostar" name="inputApostar" value="si"> SI</label>
                     <label for="noApostar"><input type="radio" id="noApostar" name="inputApostar" value="no"> NO</label>
-                    <button type="button" id="btnDecidirApostar" class="btn btn-secundario">Confirmar</button>
-                </div>
+                    <button type="button" id="btnDecidirApostar">Confirmar</button>
+                </section>
 
-                <div id="zonaCantidadApostar" class="subcard subcard-apuesta" style="display: none;">
+                <section id="zonaCantidadApostar" class="subtarjeta" style="display: none;">
                     <h3>Tu apuesta</h3>
-                    <div id="camposApuesta">
-                        <div class="campo">
+                    <section id="camposApuesta">
+                        <section class="campo">
                             <label for="cantidadApostar">¿Cuánto quieres apostar?</label>
-                            <input type="number" id="cantidadApostar" min="1" class="input-field">
-                        </div>
-                        <button type="button" id="btnConfirmarApuesta" class="btn btn-secundario">Confirmar apuesta</button>
-                    </div>
-                    <button type="button" id="btnLanzarDadoApuesta" class="btn btn-primario" style="display: none;">Lanzar dado!</button>
-                </div>
-            </div>
+                            <input type="number" id="cantidadApostar" min="1">
+                        </section>
+                        <button type="button" id="btnConfirmarApuesta">Confirmar apuesta</button>
+                    </section>
+                    <button type="button" id="btnLanzarDadoApuesta" style="display: none;">Lanzar dado!</button>
+                </section>
+            </section>
 
-            <p id="alertaPote" class="texto-alerta"></p>
-            <button type="button" id="btnSiguienteTurno" class="btn btn-primario" style="display: none;">Siguiente turno</button>
+            <p id="alertaPote"></p>
+            <button type="button" id="btnSiguienteTurno" style="display: none;">Siguiente turno</button>
         </section>
 
-    </div>
+    </section>
 
     <script src="logica.js"></script>
 </main>
-
 <footer>
-    <p>Juego Guayabita. Apostar. Todos los derechos reservados.</p>
+    <p>Juego Guayabita. Apostar. Todos los derechos reservados :>.</p>
 </footer>
 </body>
 </html>

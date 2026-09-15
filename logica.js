@@ -5,8 +5,7 @@ let jugadores = [];
 let pote;
 let turnoJugadoresFinales = [];
 let turnoActual = 0;
-let esGuayabita = false; // indica si el ultimo resultado fue una guayabita, para saber que hacer al presionar "Siguiente turno"
-
+let esGuayabita = false; 
 document.getElementById("btnJugar").addEventListener("click", function () {
     cantJugadores = document.getElementById("cantJugadores").value;
     cuotaInicial = document.getElementById("cuotaInicial").value;
@@ -15,13 +14,13 @@ document.getElementById("btnJugar").addEventListener("click", function () {
     pote = Number(cuotaInicial) * Number(cantJugadores);
     actualizarPote();
 
-    turnoJugadoresFinales = jugadoresFinales(cantJugadores); // ahora SÍ ya está asignado al llegar aquí
+    turnoJugadoresFinales = jugadoresFinales(cantJugadores); 
 
     document.getElementById("decidirApostar").style.display = "flex";
     prepararTurno();
 })
 
-//muestra el valor actual del pote, se llama cada vez que el pote cambia
+//muestra el valor actual del pote dinamicamnete 
 function actualizarPote() {
     document.getElementById("poteActual").innerHTML = "Pote actual: $" + pote;
 }
@@ -38,7 +37,6 @@ function jugadoresFinales(cantJugadores) {
     }
     return calcularOrdenDeTiro(jugadores);
 }
-
 //turno de cada jugador
 function turnoJugador(jugadores) {
     let resultadoJugadoresIniciales = [];
@@ -125,7 +123,7 @@ function jugar() {
     }
 }
 
-//avanza al siguiente turno, o si el ultimo resultado fue guayabita, inicia una ronda nueva
+//avanza al siguiente turno o si resultado fue guayabita inicia ronda nueva
 document.getElementById("btnSiguienteTurno").addEventListener("click", function () {
     if (esGuayabita) {
         esGuayabita = false;
@@ -135,7 +133,6 @@ document.getElementById("btnSiguienteTurno").addEventListener("click", function 
         prepararTurno();
     }
 })
-
 document.getElementById("btnDecidirApostar").addEventListener("click", function () {
     let opcionElegida = document.querySelector('input[name="inputApostar"]:checked');
 
@@ -157,11 +154,9 @@ document.getElementById("btnConfirmarApuesta").addEventListener("click", functio
     apostar(jugadorActual);
 })
 
-//guarda el monto de la apuesta ya confirmada, para usarlo cuando se presione "Lanzar dado!"
 let cantApuestaActual = 0;
 let apostoTodoActual = false;
 
-//confirma el monto a apostar (aun no se tira el dado, eso lo hace el jugador con el boton)
 function apostar(jugador) {
     let cantApuesta = Number(document.getElementById("cantidadApostar").value);
     if (cantApuesta > pote || cantApuesta <= 0 || !cantApuesta) {
@@ -183,13 +178,12 @@ document.getElementById("btnLanzarDadoApuesta").addEventListener("click", functi
     resolverApuesta(jugadorActual);
 })
 
-//resuelve la apuesta ya confirmada, tirando el dado
+//resuelve la apuesta ya confirmada
 function resolverApuesta(jugador) {
     document.getElementById("btnLanzarDadoApuesta").style.display = "none";
     document.getElementById("zonaDecidirApostar").style.display = "none";
 
     let tiroApuesta = lanzarDado();
-
     if (tiroApuesta > jugador.resultadoDado) {
         pote -= cantApuestaActual;
         actualizarPote();
@@ -206,10 +200,8 @@ function resolverApuesta(jugador) {
         actualizarPote();
         document.getElementById("alertaPote").innerHTML = "Perdiste, sacaste " + tiroApuesta + ", pones $" + cantApuestaActual + " al pote.";
     }
-
     document.getElementById("btnSiguienteTurno").style.display = "inline-block";
 }
-
 function iniciarNuevaRonda() {
     pote = Number(cuotaInicial) * Number(jugadores.length);
     actualizarPote();
